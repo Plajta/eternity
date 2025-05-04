@@ -5,7 +5,7 @@ string(REPLACE " " "_" DEVICE_NAME "${DEVICE_NAME}") # Remove potential spaces
 
 execute_process(
   COMMAND git rev-parse --short HEAD
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   OUTPUT_VARIABLE GIT_COMMIT_SHA
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
@@ -13,7 +13,7 @@ execute_process(
 # Check for uncommitted changes by looking at the output of git diff
 execute_process(
   COMMAND git diff --quiet
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   RESULT_VARIABLE GIT_DIFF_RESULT
 )
 
