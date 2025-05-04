@@ -19,11 +19,16 @@ jobs:
           submodules: true
           fetch-depth: 0
 
+      - name: Get Git SHA
+        id: vars
+        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
       - name: Build firmware
         id: build
         uses: samyarsadat/Pico-Build-Action@v1.3.0
         with:
           source_dir: "."
+          cmake_args: "-DGIT_COMMIT_SHA=${{ env.GIT_SHA }}"
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4

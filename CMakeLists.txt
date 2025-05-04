@@ -3,23 +3,25 @@ cmake_minimum_required(VERSION 3.13)
 set(DEVICE_NAME "Eternity_bootloader" CACHE STRING "The device name used for info and USB descriptor")
 string(REPLACE " " "_" DEVICE_NAME "${DEVICE_NAME}") # Remove potential spaces
 
-execute_process(
-  COMMAND git rev-parse --short HEAD
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  OUTPUT_VARIABLE GIT_COMMIT_SHA
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+if(NOT DEFINED GIT_COMMIT_SHA OR GIT_COMMIT_SHA STREQUAL "")
+    execute_process(
+    COMMAND git rev-parse --short HEAD
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_SHA
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 
-# Check for uncommitted changes by looking at the output of git diff
-execute_process(
-  COMMAND git diff --quiet
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  RESULT_VARIABLE GIT_DIFF_RESULT
-)
+    # Check for uncommitted changes by looking at the output of git diff
+    execute_process(
+    COMMAND git diff --quiet
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    RESULT_VARIABLE GIT_DIFF_RESULT
+    )
 
-# If there are uncommitted changes, append -dirty to the commit SHA
-if(NOT GIT_DIFF_RESULT EQUAL 0)
-    set(GIT_COMMIT_SHA "${GIT_COMMIT_SHA}-dirty")
+    # If there are uncommitted changes, append -dirty to the commit SHA
+    if(NOT GIT_DIFF_RESULT EQUAL 0)
+        set(GIT_COMMIT_SHA "${GIT_COMMIT_SHA}-dirty")
+    endif()
 endif()
 
 # Get the current build date and time
@@ -79,6 +81,9 @@ pico_set_program_url(${PROJECT_NAME} "https://plajta.eu")
 # Flash setup
 
 target_link_options(${PROJECT_NAME} PRIVATE -Wl,--print-memory-usage)
+
+configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_bootloader.ld.template ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
+pico_set_linker_script(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
 
 configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_bootloader.ld.template ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
 pico_set_linker_script(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
