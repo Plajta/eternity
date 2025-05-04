@@ -13,7 +13,7 @@ If you still need that extra space, you can get it by modifying the `ETERNITY_SI
 This project can be flashed by itself, just like any other pico-sdk project. The software that gets loaded by it needs to get a bit of configuration though.
 
 To build a project for loading by Eternity, you need to alter the linker script.
-Start by copying the [memmap_example.ld.template](./memmap_example.ld.template) file to your project and probably renaming it. If you already have a custom linker script you probably also know how to merge it with the template.
+Start by copying the [memmap_example.ld.template](./memmap_example.ld.template) file to your project and probably renaming it. If you don't plan on integrating your project with Eternity, you'll need to also rewrite the two mentions of `${ETERNITY_SIZE_BYTES_STRING}` to whatever size you chose (probably 32kB). If you already have a custom linker script you probably also know how to merge it with the template.
 
 Then add these two lines to your `CMakeLists.txt`:
 ```cmake
