@@ -38,9 +38,9 @@ void jump_to_main_app(uint32_t vector_table_addr) {
     */
 
     // Disable Interrupts
-   	systick_hw->csr &= ~1;
-   	nvic_hw->icer = 0xFFFFFFFF;
-	nvic_hw->icpr = 0xFFFFFFFF;
+    systick_hw->csr &= ~1;
+    nvic_hw->icer = 0xFFFFFFFF;
+    nvic_hw->icpr = 0xFFFFFFFF;
 
 	// Reset the peripherals
     reset_block(~(RESETS_RESET_IO_QSPI_BITS | RESETS_RESET_PADS_QSPI_BITS | RESETS_RESET_SYSCFG_BITS | RESETS_RESET_PLL_SYS_BITS));
