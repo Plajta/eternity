@@ -1,7 +1,7 @@
 # Eternity
 A 3rd stage bootloader for the RP2040, originally written for [sisyphus](https://github.com/Plajta/sisyphus).
 
-This bootloader exposes a USB CDC interface using TinyUSB with a protocol that allows for flashing the reset of the flash.
+This bootloader exposes a USB CDC interface using TinyUSB with a [protocol](./protocol/) that allows for flashing the reset of the flash.
 
 # Size
 As this bootloader is written to use USB it's size is not exactly small. It could still be slimmed down though so if anyone is interested in contributing, feel free to open an issue or submit a pull request.
