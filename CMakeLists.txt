@@ -38,7 +38,7 @@ set(PICO_SDK_FETCH_FROM_GIT on)
 include(pico_sdk_import.cmake)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Required for clangd
-set(ETERNITY_SIZE_BYTES_STRING "(32 * 1024)") # Size in bytes eg. 64 * 1024 = 64kB
+set(ETERNITY_SIZE_BYTES_STRING "(32 * 1024)" CACHE INTERNAL "Size of Eternity bootloader in bytes eg. 64 * 1024 = 64kB")
 
 # Convert string to integer
 math(EXPR ETERNITY_SIZE_BYTES "${ETERNITY_SIZE_BYTES_STRING}")
@@ -80,5 +80,5 @@ pico_set_program_url(${PROJECT_NAME} "https://plajta.eu")
 
 target_link_options(${PROJECT_NAME} PRIVATE -Wl,--print-memory-usage)
 
-configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_bootloader.ld.template ${CMAKE_BINARY_DIR}/memmap_bootloader.ld)
-pico_set_linker_script(${PROJECT_NAME} ${CMAKE_BINARY_DIR}/memmap_bootloader.ld)
+configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_bootloader.ld.template ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
+pico_set_linker_script(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
