@@ -2,11 +2,7 @@ name: Build Eternity bootloader
 
 on:
   push:
-    paths:
-      - "src/**"
   pull_request:
-    paths:
-      - "src/**"
   workflow_dispatch:
 
 jobs:
@@ -26,7 +22,7 @@ jobs:
         id: build
         uses: samyarsadat/Pico-Build-Action@v1.3.0
         with:
-          source_dir: "src"
+          source_dir: "."
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
