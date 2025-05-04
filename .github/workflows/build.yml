@@ -1,0 +1,35 @@
+name: Build Eternity bootloader
+
+on:
+  push:
+    paths:
+      - "src/**"
+  pull_request:
+    paths:
+      - "src/**"
+  workflow_dispatch:
+
+jobs:
+  firmware_build:
+    name: Build Eternity bootloader
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Build firmware
+        id: build
+        uses: samyarsadat/Pico-Build-Action@v1.3.0
+        with:
+          source_dir: "src"
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: workspace_artifacts
+          path: ${{ steps.build.outputs.output_dir }}
