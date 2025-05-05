@@ -23,6 +23,8 @@ On overflow of the command buffer (128 bytes set in [protocol.h](./protocol.h)):
 
 A handy python shell to test things out is [here](./shell.py), it uses `PySerial` wrapped in a backend package [here](./protocol.py) and also requires `rich` for nice color output.
 
+Protocol version is incremented when there is a breaking change, it will NOT get incremented when eg. a new field in [info](#info) is added to the end.
+
 ---
 
 ## Command list
