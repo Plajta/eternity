@@ -140,7 +140,7 @@ info
 
 Terminated by a newline.
 
-**Example:**
+Example:
 
 ```
 Eternity_bootloader 0448ff6 1 2025-05-04,23:11:21 2097152 32768
