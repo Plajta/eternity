@@ -84,6 +84,3 @@ target_link_options(${PROJECT_NAME} PRIVATE -Wl,--print-memory-usage)
 
 configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_bootloader.ld.template ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
 pico_set_linker_script(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
-
-configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_bootloader.ld.template ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
-pico_set_linker_script(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}/memmap_bootloader.ld)
