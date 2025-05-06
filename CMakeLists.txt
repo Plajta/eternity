@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-set(DEVICE_NAME "Eternity_bootloader" CACHE STRING "The device name used for info and USB descriptor")
+set(ETERNITY_DEVICE_NAME "Eternity_bootloader" CACHE STRING "The device name used for info and USB descriptor")
 string(REPLACE " " "_" DEVICE_NAME "${DEVICE_NAME}") # Remove potential spaces
 
 if(NOT DEFINED GIT_COMMIT_SHA OR GIT_COMMIT_SHA STREQUAL "")
@@ -61,7 +61,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   ETERNITY_SIZE_BYTES=${ETERNITY_SIZE_BYTES}
   PROJECT_NAME="${PROJECT_NAME}"
   BUILD_DATE="${BUILD_DATE}"
-  ETERNITY_DEVICE_NAME="${DEVICE_NAME}"
+  ETERNITY_DEVICE_NAME="${ETERNITY_DEVICE_NAME}"
 )
 
 # Add pico_stdlib library which aggregates commonly used features
