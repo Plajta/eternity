@@ -172,6 +172,8 @@ void handle_command(char* cmd) {
         char *p = info_buf; // The original pointer needs to be retained but this one is shifted by the function
         size_t written = 0; // Tracks how much space is used
 
+
+        written += append_to_buf(&info_buf[written], sizeof(info_buf), "bootloader", 1); // The <protocol> field
         written += append_to_buf(&info_buf[written], sizeof(info_buf), ETERNITY_DEVICE_NAME, 1);
         written += append_to_buf(&info_buf[written], sizeof(info_buf), GIT_COMMIT_SHA, 1);
         written += append_to_buf(&info_buf[written], sizeof(info_buf), PROTOCOL_VERSION, 1);

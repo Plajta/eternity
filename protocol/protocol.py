@@ -102,8 +102,10 @@ class ProtocolClient:
 
         self.send_command("info")
         data = self.readline().split(" ")
-        build_date, flash_size, bootloader_size = data[3:]
-        parsed_data = data[0:3]
+        if data[0] != "bootloader":
+            raise ValueError("Unexpected response from device")
+        build_date, flash_size, bootloader_size = data[4:]
+        parsed_data = data[1:4]
         return ProtocolInfo(*parsed_data, build_date = datetime.strptime(build_date, "%Y-%m-%d,%H:%M:%S"), flash_size = int(flash_size), bootloader_size = int(bootloader_size))
 
     def reset(self):
