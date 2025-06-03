@@ -63,8 +63,6 @@ void jump_to_main_app(uint32_t vector_table_addr) {
 
 int main() {
     if (!vector_table_is_valid(MAIN_PROGRAM_BASE_ADDR) || watchdog_caused_reboot()){
-        gpio_init(PICO_DEFAULT_LED_PIN);
-        gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
         tusb_init();
         add_repeating_timer_ms(1, usb_background_task, NULL, &usb_timer);
         while (true){
