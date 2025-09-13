@@ -1,4 +1,3 @@
-#include <boards/pico.h>
 #include <stdint.h>
 #include <string.h>
 #include <tusb.h>
@@ -7,6 +6,7 @@
 #include <pico/stdlib.h>
 #include <hardware/flash.h>
 #include <hardware/sync.h>
+#include <boards/pico.h>
 #include "pico/bootrom.h"
 #include "protocol.h"
 
