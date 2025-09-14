@@ -4,7 +4,7 @@ A 3rd stage bootloader for the RP2040, originally written for [sisyphus](https:/
 This bootloader exposes a USB CDC interface using TinyUSB with a [protocol](./protocol/) that allows for flashing the reset of the flash.
 
 # Size
-As this bootloader is written to use USB it's size is not exactly small. It could still be slimmed down though so if anyone is interested in contributing, feel free to open an issue or submit a pull request.
+As this bootloader is written to use USB its size is not exactly small. It could still be slimmed down though so if anyone is interested in contributing, feel free to open an issue or submit a pull request.
 
 Right now the bootloader claims the first 32kB of the board's flash for itself even though it does only needs ~23kB right now. This was done for potential future expansion.
 If you still need that extra space, you can get it by modifying the `ETERNITY_SIZE_BYTES_STRING` setting in CMakeLists.txt.
@@ -22,7 +22,7 @@ configure_file(${CMAKE_CURRENT_LIST_DIR}/memmap_example.ld.template ${CMAKE_BINA
 pico_set_linker_script(${PROJECT_NAME} ${CMAKE_BINARY_DIR}/memmap_custom.ld)
 ```
 
-Now you're set! Well not exactly, while this builds a file that can be flashed, either by Eternity or by the normal .uf2 drag-and-drop-a-file method. This file wouldn't work for anyone not using Eternity. For that i recommend making a flag for CMake that only builds for Eternity when the user chooses to do so. For that you can look into how [sisyphus](https://github.com/Plajta/sisyphus) does it's `CMakeLists.txt` file.
+Now you're set! Well not exactly, while this builds a file that can be flashed, either by Eternity or by the normal .uf2 drag-and-drop-a-file method. This file wouldn't work for anyone not using Eternity. For that I recommend making a flag for CMake that only builds for Eternity when the user chooses to do so. For that you can look into how [sisyphus](https://github.com/Plajta/sisyphus) does it's `CMakeLists.txt` file.
 
 ## Including inside one binary
 That isn't where you have to stop though! You can also include the project in a more integrated way that builds your project with Eternity into one single binary for easy flashing.

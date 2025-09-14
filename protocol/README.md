@@ -8,7 +8,7 @@ The device responds according to the specific command.
 
 Errors are reported with messages starting with `err`, and successful operations respond with `ack`.
 
-All adresses are in hexadecial with 0 starting at the main program address built into the bootloader at compile time usinga linker script. You CANNOT overwrite the bootloader itself (at least not in a way i am aware of).
+All addresses are in hexadecial with 0 starting at the main program address built into the bootloader at compile time usinga linker script. You CANNOT overwrite the bootloader itself (at least not in a way I am aware of).
 
 A page of flash is 256 bytes long and a sector is 4096 bytes.
 
